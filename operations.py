@@ -58,9 +58,9 @@ def enter_employees_table():
             if(cell.value == "NULL"):
                 data.append(None)
             else:
-                data.append(cell.value)
+                data.append(cell.value)        
         if(data[8] is not None):
-            cursor.execute("SELECT id FROM employees WHERE id = ?", (data[8],))
+            cursor.execute("SELECT id FROM employees WHERE email = ?", (data[8],))
             row = cursor.fetchone()
             if row:
                 data[8] = row.id

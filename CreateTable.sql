@@ -24,16 +24,16 @@ CREATE OR ALTER PROCEDURE insert_employee
 @JobTitle VARCHAR(50),
 @Salary DECIMAL(10, 2),
 @Department VARCHAR(50), 
-@ManagerId INT = NULL
+@ManagerEmail VARCHAR(50) = NULL
 AS
 DECLARE @M_ID INT
 
-IF (@ManagerId IS NOT NULL)
+IF (@ManagerEmail IS NOT NULL)
     BEGIN
         SET @M_ID = (
             SELECT id
             FROM employees
-            WHERE id = @ManagerID)
+            WHERE email = @ManagerEmail)
     END
 
 BEGIN TRAN T1
@@ -51,7 +51,7 @@ EXECUTE insert_employee
 @JobTitle = 'Engineer',
 @Salary = 70000,
 @Department = 'IT', 
-@ManagerId = NULL
+@ManagerEmail = NULL
 
 EXECUTE insert_employee
 @FirstName = 'Alice',
@@ -62,7 +62,7 @@ EXECUTE insert_employee
 @JobTitle = 'Manager',
 @Salary = 90000.00,
 @Department = 'HR', 
-@ManagerId = NULL
+@ManagerEmail = NULL
 
 EXECUTE insert_employee
 @FirstName = 'Bob',
@@ -73,7 +73,7 @@ EXECUTE insert_employee
 @JobTitle = 'Analyst',
 @Salary = 65000.00,
 @Department = 'Finance', 
-@ManagerId = 2
+@ManagerEmail = "Alice.Smith@email.com"
 
 USE company_db; 
 
