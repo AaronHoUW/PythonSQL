@@ -58,7 +58,12 @@ def enter_employees_table():
             if(cell.value == "NULL"):
                 data.append(None)
             else:
-                data.append(cell.value)        
+                data.append(cell.value)
+        cursor.execute("SELECT email FROM employees WHERE email = ?", (data[2],))
+        row = cursor.fetchone()
+        if row:
+            print(f"{data[0]} {data[1]}'s Data already exists")
+            continue
         if(data[8] is not None):
             cursor.execute("SELECT id FROM employees WHERE email = ?", (data[8],))
             row = cursor.fetchone()

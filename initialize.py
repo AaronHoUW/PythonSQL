@@ -9,7 +9,4 @@ def main():
 
 main() 
     
-# Other Stuff to Added
-# Security, tblEmployees is listed within the code, making it an parama can help
-# Make the data insertion where it checks if it listed before being added
     
