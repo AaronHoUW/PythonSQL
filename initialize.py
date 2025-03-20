@@ -2,11 +2,10 @@ import operations as op
 import gitignore as gi
 
 def main():
-    op.connect_database(gi.DRIVER, gi.SERVER, gi.DATABASE, gi.USER, gi.PASSWORD)
-    connection = f'DRIVER={gi.DRIVER}; SERVER={gi.SERVER}; Trusted_Connection=yes; Database={gi.DATABASE}; UID={gi.USER}; PWD={gi.PASSWORD}'
-    op.check_employees_table(connection)
-    op.enter_employees_table(connection)
-    op.fetch_employees_table(connection)
+    op.connect_database(gi.DATABASE)
+    op.check_employees_table()
+    op.enter_employees_table()
+    op.fetch_employees_table()
 
 main() 
     

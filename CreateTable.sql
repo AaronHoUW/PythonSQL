@@ -1,7 +1,7 @@
 CREATE DATABASE company_db;
 USE company_db;
 
-CREATE TABLE tblEmployees (
+CREATE TABLE employees (
     id INT IDENTITY(1,1) PRIMARY KEY, --Auto Increment
     first_name VARCHAR(50),
     last_name VARCHAR(50),
@@ -11,7 +11,7 @@ CREATE TABLE tblEmployees (
     job_title VARCHAR(50),
     salary DECIMAL(10, 2),
     department VARCHAR(50), --Ask if this should've been another table
-    manager_id INT NULL REFERENCES tblEmployees(id) 
+    manager_id INT NULL REFERENCES employees(id) 
 )
 GO
 
@@ -32,12 +32,12 @@ IF (@ManagerId IS NOT NULL)
     BEGIN
         SET @M_ID = (
             SELECT id
-            FROM tblEmployees
+            FROM employees
             WHERE id = @ManagerID)
     END
 
 BEGIN TRAN T1
-    INSERT INTO tblEmployees
+    INSERT INTO employees
     VALUES(@FirstName, @LastName, @Email, @PhoneNumber, @HireDate, @JobTitle, @Salary, @Department, @M_ID)
 COMMIT TRAN T1
 GO
@@ -76,10 +76,15 @@ EXECUTE insert_employee
 @ManagerId = 2
 
 USE company_db; 
-SELECT *
-FROM tblEmployees
 
-DROP TABLE tblEmployees
+SELECT *
+FROM employees
+
+SELECT name
+FROM sys.databases
+WHERE name = 'company_db'
+
+DROP TABLE employees
 
 USE MASTER
 DROP DATABASE company_db
