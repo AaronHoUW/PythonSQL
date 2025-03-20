@@ -2,15 +2,15 @@ CREATE DATABASE company_db;
 USE company_db;
 
 CREATE TABLE employees (
-    id INT IDENTITY(1,1) PRIMARY KEY, --Auto Increment
+    id INT IDENTITY(1,1) PRIMARY KEY, 
     first_name VARCHAR(50),
     last_name VARCHAR(50),
-    email VARCHAR(100) UNIQUE, --Unique
-    phone_number VARCHAR(20) NULL, --Nullable
+    email VARCHAR(100) UNIQUE, 
+    phone_number VARCHAR(20) NULL, 
     hire_date DATETIME NOT NULL,
     job_title VARCHAR(50),
     salary DECIMAL(10, 2),
-    department VARCHAR(50), --Ask if this should've been another table
+    department VARCHAR(50), 
     manager_id INT NULL REFERENCES employees(id) 
 )
 GO
@@ -75,16 +75,7 @@ EXECUTE insert_employee
 @Department = 'Finance', 
 @ManagerEmail = "Alice.Smith@email.com"
 
-USE company_db; 
+USE company_db
 
 SELECT *
 FROM employees
-
-SELECT name
-FROM sys.databases
-WHERE name = 'company_db'
-
-DROP TABLE employees
-
-USE MASTER
-DROP DATABASE company_db
